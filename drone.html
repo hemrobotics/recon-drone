@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <script>var xhttp = new XMLHttpRequest();</script><script>function getsend(arg) { xhttp.open('GET', arg +'?' + new Date().getTime(), true); xhttp.send() } </script>
+
+  <div class="boxbox">
+    <img src="https://placehold.it/320x240">
+
+    <button class="lg-button sm-button" onclick="window.open('/cp')" >Settings</button>
+    <button class="col3" onmousedown="getsend('ledon')">LED ON</button>
+    <button class="col4" onmousedown="getsend('ledoff')">LED OFF</button>
+
+    <button class="col3 row2 noselect" onmousedown="getsend('go')" onmouseup="getsend('stop')" ontouchstart="getsend('go')" ontouchend="getsend('stop')">U</button>
+    <button class="col2 row3 noselect" onmousedown="getsend('left')" onmouseup="getsend('stop')" ontouchstart="getsend('left')" ontouchend="getsend('stop')">L</button>
+    <button class="col3 row3" onmousedown="getsend('stop')" onmouseup="getsend('stop')"></button>
+    <button class="col4 row3 noselect" onmousedown="getsend('right')" onmouseup="getsend('stop')" ontouchstart="getsend('right')" ontouchend="getsend('stop')">R</button>
+    <button class="col3 row4 noselect" onmousedown="getsend('back')" onmouseup="getsend('stop')" ontouchstart="getsend('back')" ontouchend="getsend('stop')">D</button>
+  </div>
+
+  <style>
+    .boxbox {
+	display: grid;
+	grid-template-columns: 60% repeat(3, 1fr);
+	grid-template-rows: 40px repeat(3, 1fr);
+	grid-gap: 0.2em;
+    }
+    img {
+	transform: rotate(90deg);
+	grid-row: 1 / 4;
+    }
+    .col1 {
+	grid-column: 1;
+    }
+    .col2 {
+	grid-column: 2;
+    }
+    .col3 {
+	grid-column: 3;
+    }
+    .col4 {
+	grid-column: 4;
+    }
+    .row1 {
+	grid-row: 1;
+    }
+    .row2 {
+	grid-row: 2;
+    }
+    .row3 {
+	grid-row: 3;
+    }
+    .row4 {
+	grid-row: 4;
+    }
+    /* Code block from https://stackoverflow.com/a/4407335/6202405 is
+	licensed under CC BY-SA 4.0 */
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	 -khtml-user-select: none; /* Konqueror HTML */
+	   -moz-user-select: none; /* Old versions of Firefox */
+	    -ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; /* Non-prefixed version, currently
+				      supported by Chrome, Edge, Opera and Firefox */
+    }
+    /* End of code block */
+  </style>
+</html>

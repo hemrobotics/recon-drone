@@ -11,12 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #include "esp_http_server.h"
 #include "esp_timer.h"
 #include "esp_camera.h"
 #include "img_converters.h"
 #include "camera_index.h"
 #include "Arduino.h"
+
+#include "handlers.h"
 
 #include "fb_gfx.h"
 #include "fd_forward.h"
@@ -578,7 +581,7 @@ static esp_err_t status_handler(httpd_req_t *req){
     return httpd_resp_send(req, json_response, strlen(json_response));
 }
 
-static esp_err_t index_handler(httpd_req_t *req){
+static esp_err_t cp_handler(httpd_req_t *req){
     httpd_resp_set_type(req, "text/html");
     httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
     sensor_t * s = esp_camera_sensor_get();
@@ -619,10 +622,66 @@ void startCameraServer(){
         .user_ctx  = NULL
     };
 
-   httpd_uri_t stream_uri = {
+    httpd_uri_t stream_uri = {
         .uri       = "/stream",
         .method    = HTTP_GET,
         .handler   = stream_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t cp_uri = {
+        .uri       = "/cp",
+        .method    = HTTP_GET,
+        .handler   = cp_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t go_uri = {
+        .uri       = "/go",
+        .method    = HTTP_GET,
+        .handler   = go_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t back_uri = {
+        .uri       = "/back",
+        .method    = HTTP_GET,
+        .handler   = back_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t stop_uri = {
+        .uri       = "/stop",
+        .method    = HTTP_GET,
+        .handler   = stop_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t left_uri = {
+        .uri       = "/left",
+        .method    = HTTP_GET,
+        .handler   = left_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t right_uri = {
+        .uri       = "/right",
+        .method    = HTTP_GET,
+        .handler   = right_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t ledon_uri = {
+        .uri       = "/ledon",
+        .method    = HTTP_GET,
+        .handler   = ledon_handler,
+        .user_ctx  = NULL
+    };
+
+    httpd_uri_t ledoff_uri = {
+        .uri       = "/ledoff",
+        .method    = HTTP_GET,
+        .handler   = ledoff_handler,
         .user_ctx  = NULL
     };
 
@@ -645,12 +704,23 @@ void startCameraServer(){
     
     face_id_init(&id_list, FACE_ID_SAVE_NUMBER, ENROLL_CONFIRM_TIMES);
     
+    config.max_uri_handlers = 12;
+
     Serial.printf("Starting web server on port: '%d'\n", config.server_port);
     if (httpd_start(&camera_httpd, &config) == ESP_OK) {
         httpd_register_uri_handler(camera_httpd, &index_uri);
         httpd_register_uri_handler(camera_httpd, &cmd_uri);
         httpd_register_uri_handler(camera_httpd, &status_uri);
         httpd_register_uri_handler(camera_httpd, &capture_uri);
+
+        httpd_register_uri_handler(camera_httpd, &cp_uri);
+        httpd_register_uri_handler(camera_httpd, &go_uri);
+        httpd_register_uri_handler(camera_httpd, &back_uri);
+        httpd_register_uri_handler(camera_httpd, &stop_uri);
+        httpd_register_uri_handler(camera_httpd, &left_uri);
+        httpd_register_uri_handler(camera_httpd, &right_uri);
+        httpd_register_uri_handler(camera_httpd, &ledon_uri);
+        httpd_register_uri_handler(camera_httpd, &ledoff_uri);
     }
 
     config.server_port += 1;
