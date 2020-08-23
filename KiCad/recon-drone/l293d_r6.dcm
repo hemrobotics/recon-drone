@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP L293D
+D Quadruple Half-H Drivers
+K Half-H Driver Motor
+F http://www.ti.com/lit/ds/symlink/l293.pdf
+$ENDCMP
+#
+$CMP L293D_R6
+D Quadruple Half-H Drivers
+K Half-H Driver Motor
+F http://www.ti.com/lit/ds/symlink/l293.pdf
+$ENDCMP
+#
+#End Doc Library

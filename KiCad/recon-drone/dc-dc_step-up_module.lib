@@ -1,0 +1,21 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# DC-DC_Step-up_Module
+#
+DEF DC-DC_Step-up_Module U 0 40 Y Y 1 F N
+F0 "U" -450 -50 50 H V C CNN
+F1 "DC-DC_Step-up_Module" -100 -500 50 H V C CNN
+F2 "" -450 -50 50 H I C CNN
+F3 "" -450 -50 50 H I C CNN
+DRAW
+S -450 -100 -450 -100 0 1 0 N
+S -450 -100 300 -450 0 1 0 N
+X IN+ ~ -550 -150 100 R 50 50 1 1 W
+X IN- ~ -550 -400 100 R 50 50 1 1 W
+X OUT+ ~ 400 -150 100 L 50 50 1 1 w
+X OUT- ~ 400 -400 100 L 50 50 1 1 w
+ENDDRAW
+ENDDEF
+#
+#End Library

@@ -1,0 +1,23 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Powerbank_Module
+#
+DEF Powerbank_Module U 0 40 Y Y 1 F N
+F0 "U" 0 250 50 H V C CNN
+F1 "Powerbank_Module" 0 150 50 H V C CNN
+F2 "" 0 150 50 H I C CNN
+F3 "" 0 150 50 H I C CNN
+DRAW
+S -300 -150 250 -150 0 1 0 N
+S -300 100 -300 -150 0 1 0 N
+S -300 100 250 100 0 1 0 N
+S 250 100 250 -150 0 1 0 N
+X IN+ ~ 350 50 100 L 50 50 1 1 O
+X IN- ~ 350 -100 100 L 50 50 1 1 O
+X OUT+ ~ -400 50 100 R 50 50 1 1 O
+X OUT- ~ -400 -100 100 R 50 50 1 1 O
+ENDDRAW
+ENDDEF
+#
+#End Library

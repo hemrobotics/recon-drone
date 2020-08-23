@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name ESP32CAM)(type Legacy)(uri ${KIPRJMOD}/ESP32CAM.lib)(options "")(descr ""))
+  (lib (name l293d_r6)(type Legacy)(uri ${KIPRJMOD}/l293d_r6.lib)(options "")(descr ""))
+  (lib (name dc-dc_step-up_module)(type Legacy)(uri ${KIPRJMOD}/dc-dc_step-up_module.lib)(options "")(descr ""))
+  (lib (name powerbank_module)(type Legacy)(uri ${KIPRJMOD}/powerbank_module.lib)(options "")(descr ""))
+)
